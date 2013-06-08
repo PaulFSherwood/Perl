@@ -1,10 +1,35 @@
 #!/usr/bin/perl
-
 use strict;
 use warnings;
+use LWP::Simple;
 
-my $filename = "Sub Terrania OST - ending.avi";
-my $url = "http://www.youtube.com/watch?v=";
-my $url2 = "rgXQjbGsWF4";
+# Globals
+my $filename = "";
+my $url = "";
+my $content = "";
+# get a url from user
+if ($ARGV[0])
+{
+    my $url = $ARGV[0];
+} else {
+    print "I need a url\n";
+    $url = <>;
+    chomp($url);
+    $url =~ s/https/http/ig;
+    print "Using ($url) thank you\n";
+}
 
-`youtube-dl -o $filename $url$url2`
+$content = get($url) || die "Couldn't get $url";
+# find our title
+if($content =~ m/\"title\" content=\"([0-9a-zA-Z:,-_\s]+)/i) {
+    # $1 is read only, copy to temp variable and modify
+    my $filename = $1;
+    # replace spaces with underscores
+    $filename =~ s/\s/_/ig;
+    $filename =~ s/://ig;
+    $filename =~ s/\?//ig;
+    print "$filename\n";
+
+    #`youtube-dl -o $filename $url`;
+
+}
