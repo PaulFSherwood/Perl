@@ -9,10 +9,10 @@ my @living_room = "";
 my @dining_room = "";
 my @kitchen = "";
 my @bathroom = "";
-
+# setup to grab the xls sheet
 my $parser   = Spreadsheet::ParseExcel->new();
 my $workbook = $parser->Parse('test.xls') || die ("failed to load text.xls $!\n");
-
+# main loop
 for my $worksheet ( $workbook->worksheets() ) {
 
     # my ( $row_min, $row_max ) = $worksheet->row_range();
@@ -45,15 +45,21 @@ for my $worksheet ( $workbook->worksheets() ) {
     {
         for (my $j = 1; $j<6; $j++)
         {
-            #print "($j, $i)\n";
+            # there is probably a better way to set this up
+            # this is to get the information out of the desired
+		    # cell and test it
             $temp  = $worksheet->get_cell($j, $i);
             next unless $temp;
             $temp2 = $temp->value();
+
             if ($temp2 =~ /./)
             {
+				# pull out first row information so we can 
+                # push it to the desired array
                 $temp = $worksheet->get_cell($j, 0);
                 next unless $temp;
                 $temp2 = $temp->value();
+
                 if ($i == 1)
                 {
                     push(@living_room, $temp2);
@@ -73,6 +79,7 @@ for my $worksheet ( $workbook->worksheets() ) {
             }
         }
     }
+    # checking to see if the information came out correct.
     print "@living_room\n";
     print "@dining_room\n";
     print "@kitchen\n";
