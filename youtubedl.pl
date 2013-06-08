@@ -18,7 +18,7 @@ if ($ARGV[0])
     $url =~ s/https/http/ig;
     print "Using ($url) thank you\n";
 }
-
+# try to assign our url to content
 $content = get($url) || die "Couldn't get $url";
 # find our title
 if($content =~ m/\"title\" content=\"([0-9a-zA-Z:,-_\s]+)/i) {
@@ -31,5 +31,4 @@ if($content =~ m/\"title\" content=\"([0-9a-zA-Z:,-_\s]+)/i) {
     print "$filename\n";
 
     #`youtube-dl -o $filename $url`;
-
 }
