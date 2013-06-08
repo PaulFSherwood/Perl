@@ -59,19 +59,22 @@ for my $worksheet ( $workbook->worksheets() ) {
                 $temp = $worksheet->get_cell($j, 0);
                 next unless $temp;
                 $temp2 = $temp->value();
-
+                # check for any values that show up for section one
                 if ($i == 1)
                 {
                     push(@living_room, $temp2);
                 }
+                # check for any values that show up for section two
                 if ($i == 2)
                 {
                     push(@dining_room, $temp2);
                 }
+                # check for any values that show up for section three
                 if ($i == 3)
                 {
                     push(@kitchen, $temp2);
                 }
+                # check for any values that show up for section four
                 if ($i == 4)
                 {
                     push(@bathroom, $temp2);
