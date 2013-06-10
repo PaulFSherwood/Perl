@@ -18,3 +18,4 @@ print "@creatures\n";
 # put array into scalar with a coma seperation
 $zoo = join (', ', @creatures);
 print "$zoo\n";
+
