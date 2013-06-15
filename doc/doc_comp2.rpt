@@ -4,8 +4,9 @@
 
                 }else if (xml.name() == "name_tag_left_y"){
                     QString name_tag_left_y = xml.readElementText();
-                    uiObject->Setname_tag_left_y(name_tag_left_y.toInt( F ));
+                    uiObject->Setname_tag_left_y(name_tag_left_y.toInt( T ));
 
                 }else if (xml.name() == "name_tag_left_text"){
-                    QString name_tag_left_text = xml.readElementText( T );
+                    QString name_tag_left_text = xml.readElementText();
+                    uiObject->Setname_tag_left_y(name_tag_left_y.toInt( F ));
                     uiObject->Setname_tag_left_text(name_tag_left_text.toStdString());

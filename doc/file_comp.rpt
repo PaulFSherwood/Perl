@@ -8,4 +8,5 @@
 
                 }else if (xml.name() == "name_tag_left_text"){
                     QString name_tag_left_text = xml.readElementText();
+                    uiObject->Setname_tag_left_y(name_tag_left_y.toInt());
                     uiObject->Setname_tag_left_text(name_tag_left_text.toStdString());
