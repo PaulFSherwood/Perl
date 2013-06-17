@@ -5,7 +5,6 @@ use strict;
 
 # DEBUG INFORMATION
 my @debug = (0, 0, 0, 0, 0);
-my $debugCounter = 1;
 
 # SEND LIST OF FILES TO AN ARRAY
 my $dir = "doc";
@@ -73,9 +72,11 @@ foreach $file_comp1 (@origArray)
         # OPEN SECONDARY FILES FOR COMPARING 
         open (FILE1, 'doc/' . $file_comp1) or die "cant open 1:$file_comp1\n";
         open (FILE2, 'doc/' . $file_comp2) or die "cant open 2:$file_comp2\n";
-        
+       
+        # FILE ARRAY FOR COMPARE 
         @file_compOne = <FILE1>;
         @file_compTwo = <FILE2>;
+
         # CLEAN UP
         close(FILE1);
         close(FILE2);
@@ -187,6 +188,7 @@ foreach $file_comp1 (@origArray)
             my $tempFile = $file_comp1;
             $tempFile =~ s/(_output)?.rpt//g;
             open (FILE1, ">doc/$tempFile\_output.rpt") or die "cant open 1:$tempFile\_output.rpt\n";
+
             # OUTPUT ARRAY TO A NEW FILE
             for (my $x = 0; $x < $comp1Counter; $x++)
             {
