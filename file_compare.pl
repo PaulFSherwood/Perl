@@ -15,7 +15,7 @@ my $canCompare = 1;
 # my $line_number = 1;
 # my $line_number2 = 1;
 
-my @dirArray = <doc/*.rpt>;
+my @dirArray = <doc/*.cpp>;
 my @origArray = ();
 my @backArray = ();
 my @outputArray = ();
@@ -26,7 +26,7 @@ my @file_compTwo = ();
 foreach my $tF (@dirArray)
 {
     # GET SECONDARY REPORTS
-    if ($tF =~ /([0-9]+).rpt/g)
+    if ($tF =~ /([0-9]+).cpp/g)
     {
         $tF =~ s/^(doc\/)//g;
         push (@backArray, $tF);
@@ -87,7 +87,7 @@ foreach $file_comp1 (@origArray)
 
         # MAKE SURE WE DONT COMPARE FILES WE SHOULDN'T
         my $testOne = $file_comp1;
-        $testOne =~ s/(_output)?.rpt//g;
+        $testOne =~ s/(_output)?.cpp//g;
 
         # MAKE SURE WE ARE TESTING SIMILAR FILES BY SIZE
         if ($#file_compOne != $#file_compTwo)
@@ -186,8 +186,8 @@ foreach $file_comp1 (@origArray)
             # FINISHED COMPARING THE TWO FILES
             # PUSH RESULTS TO AN OUTPUT FILE
             my $tempFile = $file_comp1;
-            $tempFile =~ s/(_output)?.rpt//g;
-            open (FILE1, ">doc/$tempFile\_output.rpt") or die "cant open 1:$tempFile\_output.rpt\n";
+            $tempFile =~ s/(_output)?.cpp//g;
+            open (FILE1, ">doc/$tempFile\_output.cpp") or die "cant open 1:$tempFile\_output.cpp\n";
 
             # OUTPUT ARRAY TO A NEW FILE
             for (my $x = 0; $x < $comp1Counter; $x++)
@@ -196,7 +196,7 @@ foreach $file_comp1 (@origArray)
                 print FILE1 "$tempLine";
                 shift(@outputArray);
             }
-            $file_comp1 = "$tempFile\_output.rpt";
+            $file_comp1 = "$tempFile\_output.cpp";
         }
     }
 }
