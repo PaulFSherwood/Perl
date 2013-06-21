@@ -31,7 +31,7 @@ foreach my $tF (@dirArray)
         $tF =~ s/^(doc\/)//g;
         push (@backArray, $tF);
     # REMOVE OUR OUTPUT FILES
-    } elsif ($tF =~ m/(_output.rpt)/g)
+    } elsif ($tF =~ m/(_output.cpp)/g)
     { 
         # DO NOTHING
     # GET PRIMARY REPORTS
