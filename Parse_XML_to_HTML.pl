@@ -4,7 +4,7 @@
 my @XML_File = ();
 
 # Open file
-open(FILE1, 'OrigFile.txt') or die "Can not open first file quiting\n";
+open(FILE1, '/home/grrwood/Documents/src/cplusplus/LOTGD-Clone/LOTGD-Clone/data/myData.xml') or die "Can not open first file quiting\n";
 
 # stuff file into array
 @XML_File = <FILE1>;
@@ -77,9 +77,14 @@ print FILE2 "	<div id=\"page-wrap\">";
 foreach my $xmlFile (@XML_File)
 {
     # get start tag for tab name - till end of file
-    if ($xmlFile =~ /^<[a-z]+>/ig)
-    ## add variables for $1 $2 $3 in the xmlFile =~ 
-
+    if ($xmlFile =~ /(<[a-z]+>)(.*)(<\/[a-z]+>)/ig)
+    {
+        print $1;
+        print "[";
+        print $2;
+        print "]$3\n";
+    }
+}
 # Write div tab for start tag name
 
 # Write open content div
