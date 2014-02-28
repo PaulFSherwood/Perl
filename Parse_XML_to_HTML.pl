@@ -1,13 +1,13 @@
 #!/usr/bin/perl
 
 # Global Variables
-my @Orig_File = ();
+my @XML_File = ();
 
 # Open file
 open(FILE1, 'OrigFile.txt') or die "Can not open first file quiting\n";
 
 # stuff file into array
-@Orig_File = <FILE1>;
+@XML_File = <FILE1>;
 
 # Check if file exists
 my $html_parse_file = '/home/grrwood/Documents/src/html/blarg.html';
@@ -18,7 +18,7 @@ if (-e $html_parse_file)
 }
 
 # get total number of lines in the file
-my $xmlFileSize = $#Orig_File; # not sure if this should be +1 for @ is 0 start
+my $xmlFileSize = $#XML_File; # not sure if this should be +1 for @ is 0 start
 
 # write html head to file
 print FILE2 "<!DOCTYPE html>";
@@ -72,8 +72,13 @@ print FILE2 "</head>";
 print FILE2 "\n";
 print FILE2 "<body>";
 print FILE2 "	<div id=\"page-wrap\">";
-		
-# get start tag for tab name - till end of file
+
+# Start flipping through your file
+foreach my $xmlFile (@XML_File)
+{
+    # get start tag for tab name - till end of file
+    if ($xmlFile =~ /^<[a-z]+>/ig)
+    ## add variables for $1 $2 $3 in the xmlFile =~ 
 
 # Write div tab for start tag name
 
