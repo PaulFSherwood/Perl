@@ -24,11 +24,13 @@ $content = get($url) || die "Couldn't get $url";
 if($content =~ m/\"title\" content=\"([0-9a-zA-Z:,-_\s]+)/i) {
     # $1 is read only, copy to temp variable and modify
     my $filename = $1;
+    my $extension = ".mp4";
     # replace spaces with underscores
     $filename =~ s/\s/_/ig;
     $filename =~ s/://ig;
     $filename =~ s/\?//ig;
+    $filename = $filename.$extension;
     print "$filename\n";
 
-    #`youtube-dl -o $filename $url`;
+    `youtube-dl -o $filename $url`;
 }
